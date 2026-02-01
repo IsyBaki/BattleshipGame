@@ -1,0 +1,17 @@
+
+/* Import Bootstrap SCSS , damit die Eigenscchaften von Bootstrap auch angenommen werden.*/
+@use "bootstrap/scss/bootstrap";
+
+
+
+
+
+
+
+/* Hier kann man die globale styling machen, also füt alle seiten */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}

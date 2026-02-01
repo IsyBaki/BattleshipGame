@@ -1,0 +1,159 @@
+<div class="profile-page">
+  <!-- Header -->
+  <div class="profile-page__header">
+    <h1 class="profile-page__title">Profile</h1>
+
+    <div class="profile-page__header-actions">
+      <button
+        type="button"
+        class="profile-button profile-button--danger"
+        (click)="logout()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="profile-card">
+    <div class="profile-text--muted">Loading profile…</div>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error && !loading" class="profile-card profile-card--error">
+    {{ error }}
+  </div>
+
+  <!-- Profile Content -->
+  <ng-container *ngIf="!loading">
+    <div class="profile-card" *ngIf="profile as p">
+      <!-- Top Profile Info -->
+      <div class="profile-info">
+        <div class="profile-info__avatar">
+          {{ p.username?.slice(0, 1)?.toUpperCase() }}
+        </div>
+
+        <div class="profile-info__data">
+          <!-- Username -->
+          <div class="profile-info__row">
+            <div class="profile-info__label">Username</div>
+
+            <div class="profile-info__value" *ngIf="!editingName">
+              <strong>{{ p.username }}</strong>
+
+              <button
+                type="button"
+                class="profile-button profile-button--small profile-button--ghost"
+                (click)="startEditName()"
+              >
+                Edit
+              </button>
+            </div>
+
+            <div class="profile-info__value" *ngIf="editingName">
+              <input
+                class="profile-input"
+                type="text"
+                [(ngModel)]="newUsername"
+                placeholder="New username"
+                autocomplete="off"
+              />
+
+              <button
+                type="button"
+                class="profile-button profile-button--small"
+                (click)="saveName()"
+              >
+                Save
+              </button>
+
+              <button
+                type="button"
+                class="profile-button profile-button--small profile-button--ghost"
+                (click)="cancelEditName()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="profile-info__row">
+            <div class="profile-info__label">Email</div>
+            <div class="profile-info__value">{{ p.email }}</div>
+          </div>
+
+          <!-- Member since -->
+          <div class="profile-info__row">
+            <div class="profile-info__label">Member since</div>
+            <div class="profile-info__value">
+              {{ p.createdAt | date: 'longDate' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="profile-card" *ngIf="profile as p">
+      <h2 class="profile-section-title">Statistics</h2>
+
+      <div class="profile-stats">
+        <div class="profile-stats__item">
+          <div class="profile-stats__value">{{ p.stats.games }}</div>
+          <div class="profile-stats__label">Games</div>
+        </div>
+
+        <div class="profile-stats__item">
+          <div class="profile-stats__value">{{ p.stats.wins }}</div>
+          <div class="profile-stats__label">Wins</div>
+        </div>
+
+        <div class="profile-stats__item">
+          <div class="profile-stats__value">{{ p.stats.losses }}</div>
+          <div class="profile-stats__label">Losses</div>
+        </div>
+
+        <div class="profile-stats__item">
+          <div class="profile-stats__value">{{ winRate }}%</div>
+          <div class="profile-stats__label">Win rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Actions -->
+    <div class="profile-card">
+      <h2 class="profile-section-title">Account</h2>
+
+      <div class="profile-account-actions">
+        <button
+          type="button"
+          class="profile-button profile-button--ghost"
+          disabled
+        >
+          Change password (later)
+        </button>
+
+        <button
+          type="button"
+          class="profile-button profile-button--ghost"
+          disabled
+        >
+          Change email (later)
+        </button>
+
+        <button
+          type="button"
+          class="profile-button profile-button--danger"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </div>
+
+      <div class="profile-text--muted" style="margin-top: 10px;">
+        hier kann man später mal sein Passwort und seine E-Mail ändern: wir schauen noch.
+      </div>
+    </div>
+  </ng-container>
+</div>
