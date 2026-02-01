@@ -2,8 +2,7 @@
   display: block;
 }
 
-
-/* PAGE BACKGROUND (dark background of the whole profile page) */
+/* PAGE BACKGROUND */
 
 .profile-page {
   max-width: 1000px;
@@ -12,15 +11,13 @@
   min-height: 100vh;
   color: #f1830e;
 
-  /* background color: dark */
   background:
-    radial-gradient(900px 400px at 10% 0%, rgba(146, 133, 133, 0.08), transparent),
-    radial-gradient(800px 380px at 90% 10%, rgba(185, 194, 192, 0.1), transparent),
+    radial-gradient(900px 400px at 10% 0%, rgba(255,255,255,0.03), transparent),
+    radial-gradient(800px 380px at 90% 10%, rgba(255,255,255,0.02), transparent),
     #070a12;
 }
 
-
-/* HEADER (top bar) */
+/* HEADER */
 
 .profile-page__header {
   display: flex;
@@ -35,8 +32,7 @@
   font-weight: 700;
 }
 
-
-/* BASE CARD (default container style) */
+/* BASE CARD */
 
 .profile-card {
   padding: 18px;
@@ -45,24 +41,40 @@
   border: 1px solid rgba(255,255,255,0.08);
 }
 
+/* PROFILE CARD (grau) */
 
-/* ERROR CARD (red) */
+.profile-card--profile {
+  background: rgba(160, 160, 160, 0.18);
+  background-image: none;
+}
+
+/* STATS CARD (grün) */
+
+.profile-card--stats {
+  background: rgba(0, 255, 200, 0.12);
+}
+
+/* ACCOUNT CARD (lila) */
+
+.profile-card--account {
+  background: rgba(180, 120, 255, 0.12);
+}
+
+/* LOADING CARD */
+
+.profile-card--loading {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ERROR CARD */
 
 .profile-card--error {
-  background: rgba(255, 80, 80, 0.12);   /* red background */
-  border-color: rgba(255, 80, 80, 0.6);  /* red border */
+  background: rgba(255, 80, 80, 0.12);
+  border-color: rgba(255, 80, 80, 0.6);
   color: #ffb3b3;
 }
 
-
-/* PROFILE CARD (user info / username) */
-
-.profile-card:first-of-type {
-  background: rgba(180, 180, 180, 0.12); /* grey */
-}
-
-
-/* PROFILE INFO (avatar + text) */
+/* PROFILE INFO */
 
 .profile-info {
   display: flex;
@@ -78,8 +90,6 @@
   place-items: center;
   font-size: 28px;
   font-weight: 700;
-
-  /* avatar background: light grey */
   background: rgba(255,255,255,0.18);
 }
 
@@ -105,16 +115,13 @@
   gap: 10px;
 }
 
-
-/* INPUT (username edit field) */
+/* INPUT */
 
 .profile-input {
   width: 220px;
   padding: 8px 12px;
   font-size: 14px;
   color: #ffffff;
-
-  /* input background: dark */
   background: rgba(0,0,0,0.25);
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 10px;
@@ -122,21 +129,16 @@
 
 .profile-input:focus {
   outline: none;
-
-  /* focus border: blue */
   border-color: #1e90ff;
 }
 
-
-/* BUTTONS (default buttons) */
+/* BUTTONS */
 
 .profile-button {
   padding: 10px 14px;
   font-size: 14px;
   border-radius: 12px;
   cursor: pointer;
-
-  /* button background: dark grey */
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.18);
   color: #ffffff;
@@ -152,28 +154,21 @@
 }
 
 .profile-button--ghost {
-  background: transparent; /* edit button */
+  background: transparent;
 }
 
-
-/* LOGOUT BUTTON (red) */
+/* LOGOUT */
 
 .profile-button--danger {
-  background: rgba(255, 0, 0, 0.35); /* red background */
-  border-color: rgba(255, 0, 0, 0.7); /* red border */
-  color: #ffffff;
+  background: rgba(255, 0, 0, 0.35);
+  border-color: rgba(255, 0, 0, 0.7);
 }
 
 .profile-button--danger:hover {
   background: rgba(255, 0, 0, 0.5);
 }
 
-
-/* STATISTICS CARD (green / cyan) */
-
-.profile-card:nth-of-type(2) {
-  background: rgba(0, 255, 200, 0.12); /* green */
-}
+/* STATS */
 
 .profile-section-title {
   margin: 0 0 12px;
@@ -189,8 +184,6 @@
 
 .profile-stats__item {
   text-align: center;
-
-  /* stat item background: dark grey */
   background: rgba(255,255,255,0.06);
   padding: 12px;
   border-radius: 14px;
@@ -202,17 +195,11 @@
 }
 
 .profile-stats__label {
-  margin-top: 4px;
   font-size: 13px;
   opacity: 0.7;
 }
 
-
-/* ACCOUNT CARD (purple) */
-
-.profile-card:nth-of-type(3) {
-  background: rgba(180, 120, 255, 0.12); /* purple */
-}
+/* ACCOUNT */
 
 .profile-account-actions {
   display: flex;
@@ -220,14 +207,12 @@
   flex-wrap: wrap;
 }
 
-
 /* TEXT */
 
 .profile-text--muted {
   font-size: 13px;
   opacity: 0.65;
 }
-
 
 /* MOBILE */
 

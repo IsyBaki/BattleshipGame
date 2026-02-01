@@ -15,7 +15,7 @@
   </div>
 
   <!-- Loading -->
-  <div *ngIf="loading" class="profile-card">
+  <div *ngIf="loading" class="profile-card profile-card--loading">
     <div class="profile-text--muted">Loading profile…</div>
   </div>
 
@@ -26,7 +26,8 @@
 
   <!-- Profile Content -->
   <ng-container *ngIf="!loading">
-    <div class="profile-card" *ngIf="profile as p">
+    <!-- ✅ Profile (grau) -->
+    <div class="profile-card profile-card--profile" *ngIf="profile as p">
       <!-- Top Profile Info -->
       <div class="profile-info">
         <div class="profile-info__avatar">
@@ -94,8 +95,8 @@
       </div>
     </div>
 
-    <!-- Stats -->
-    <div class="profile-card" *ngIf="profile as p">
+    <!-- ✅ Stats (grün) -->
+    <div class="profile-card profile-card--stats" *ngIf="profile as p">
       <h2 class="profile-section-title">Statistics</h2>
 
       <div class="profile-stats">
@@ -121,8 +122,8 @@
       </div>
     </div>
 
-    <!-- Account Actions -->
-    <div class="profile-card">
+    <!-- ✅ Account (lila) -->
+    <div class="profile-card profile-card--account">
       <h2 class="profile-section-title">Account</h2>
 
       <div class="profile-account-actions">
