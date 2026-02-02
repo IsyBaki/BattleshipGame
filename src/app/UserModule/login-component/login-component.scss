@@ -1,5 +1,7 @@
+
+
 .login-page {
-  background: #f6f5f7;
+  background: #AFC3DE;
   min-height: calc(100vh - 56px); // wegen MenuBar
   display: flex;
   justify-content: center;
@@ -122,6 +124,41 @@ input {
 	max-width: 100%;
 	min-height: 480px;
 }
+
+/* Große Monitore: Container breiter + höher */
+@media (min-width: 1600px) {
+  .container {
+    width: 1100px;
+    min-height: 600px;
+    border-radius: 16px;
+  }
+
+  form {
+    padding: 0 70px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  input {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 14px 55px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .container {
+    width: 1250px;
+    min-height: 650px;
+  }
+}
+
 
 .form-container {
 	position: absolute;

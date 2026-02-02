@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=Arbutus+Slab|Open+Sans&display=swap');
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #AFC3DE;
+  padding: 48px 24px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Nummerierung */
+.container {
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 48px;
+  margin: 0 auto;
+
+  counter-reset: rule;
+}
+
+.card {
+  position: relative;
+  height: 0;
+  padding-bottom: 120%;
+  cursor: pointer;
+
+  --offset-multiplier: 4px;
+  --translate: 0;
+
+  transform: translate(var(--translate), var(--translate));
+  transition: transform 0.4s ease;
+
+  &:hover {
+    --translate: calc(-1px * (var(--cards) - 1));
+  }
+
+  /* Nummer oben links */
+  &::before {
+    counter-increment: rule;
+    content: counter(rule);
+
+    position: absolute;
+    top: -12px;
+    left: -12px;
+
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+
+    display: grid;
+    place-items: center;
+
+    background: #3f4658;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+
+    z-index: 20;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+}
+
+/* Kartenfarben pro Regel */
+.card:nth-child(1) .child { background: #9eb257; }
+.card:nth-child(2) .child { background: #42a267; }
+.card:nth-child(3) .child { background: #b342ad; }
+.card:nth-child(4) .child { background: #bc97e3; }
+.card:nth-child(5) .child { background: #a9a5be; }
+.card:nth-child(6) .child { background: #d9155a; }
+
+/* Stack-Cards */
+.child {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(4, 4, 4, 0.12);
+  box-sizing: border-box;
+
+  display: flex;              
+  flex-direction: column;     
+  gap: 10px;                  
+
+  --translate: calc(var(--offset) * var(--offset-multiplier));
+  transform: translate(var(--translate), var(--translate));
+  transition: inherit;
+
+  h2 {
+    font-family: 'Arbutus Slab', serif;
+    font-size: 18px;
+    margin: 0;               /*  Überschriftenabstand entfernen  */
+    color: #111;
+    line-height: 1.25;
+  }
+
+  /*  für kurze Texte in <p>  */
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #030202;
+  }
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      --offset: #{-1 + $i};
+      z-index: #{6 - $i};
+    }
+  }
+}
+
+/*  Bulletpoints in Card sauber */
+.child ul {
+  margin: 0;
+  padding-left: 18px;
+
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.35;
+
+  overflow: auto;            
+  flex: 1;                  
+}
+
+.child li {
+  margin: 6px 0;
+}
+
+/* =========================GROßE MONITORE========================= */
+
+@media (min-width: 1600px) {
+  :host {
+    padding: 64px 32px;
+  }
+
+  .container {
+    max-width: 1200px;
+    gap: 64px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .card::before {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .child {
+    padding: 24px;
+    border-radius: 10px;
+    gap: 12px;
+  }
+
+  .child h2 {
+    font-size: 22px;
+  }
+
+  .child p,
+  .child ul {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1500px;
+    gap: 72px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .child h2 {
+    font-size: 24px;
+  }
+
+  .child p,
+  .child ul {
+    font-size: 17px;
+  }
+}

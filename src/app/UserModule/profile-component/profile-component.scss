@@ -1,88 +1,103 @@
 :host {
   display: block;
+   min-height: 100vh;   
+  background-color: #AFC3DE;
+  
 }
 
-/* PAGE BACKGROUND */
+/* =========================MAIN CONTAINER========================= */
 
 .profile-page {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 1100px;
+  margin: 40px auto;
+  margin-top: 0;    
+  padding-top: 0;
   padding: 24px;
-  min-height: 100vh;
+  border-radius: 20px;
   color: #f1830e;
-
-  background:
-    radial-gradient(900px 400px at 10% 0%, rgba(255,255,255,0.03), transparent),
-    radial-gradient(800px 380px at 90% 10%, rgba(255,255,255,0.02), transparent),
-    #070a12;
+ 
+  
 }
 
-/* HEADER */
+/* Große Monitore */
+@media (min-width: 1600px) {
+  .profile-page {
+    max-width: 1400px;
+  }
+}
 
-.profile-page__header {
+@media (min-width: 2000px) {
+  .profile-page {
+    max-width: 1600px;
+  }
+}
+
+
+/* dunkeler Bereich */
+.page-container {
+  background: rgba(21, 22, 19, 0.952);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+
+/*Schrift*/
+.card {
+color: #f1830e;
+}
+
+/* =========================HEADER========================= */
+
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-.profile-page__title {
+.title {
   margin: 0;
   font-size: 28px;
   font-weight: 700;
 }
 
-/* BASE CARD */
-
-.profile-card {
-  padding: 18px;
-  margin-bottom: 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.08);
+.logout-button {
+  display: flex;
 }
 
-/* PROFILE CARD (grau) */
+/* =========================CARDS (INNENFARBEN)========================= */
 
-.profile-card--profile {
-  background: rgba(160, 160, 160, 0.18);
-  background-image: none;
+.card {
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* STATS CARD (grün) */
-
-.profile-card--stats {
-  background: rgba(0, 255, 200, 0.12);
+/* Profile: leicht lila */
+.card--profile {
+  background: rgba(180, 120, 255, 0.14);
 }
 
-/* ACCOUNT CARD (lila) */
-
-.profile-card--account {
-  background: rgba(180, 120, 255, 0.12);
+/* Statistics: türkis */
+.card--stats {
+  background: rgba(0, 255, 200, 0.18);
 }
 
-/* LOADING CARD */
-
-.profile-card--loading {
-  background: rgba(255,255,255,0.06);
+/* Account: lila */
+.card--account {
+  background: rgba(180, 120, 255, 0.16);
 }
 
-/* ERROR CARD */
+/* =========================USER INFO========================= */
 
-.profile-card--error {
-  background: rgba(255, 80, 80, 0.12);
-  border-color: rgba(255, 80, 80, 0.6);
-  color: #ffb3b3;
-}
-
-/* PROFILE INFO */
-
-.profile-info {
+.user {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.profile-info__avatar {
+.avatar {
   width: 72px;
   height: 72px;
   border-radius: 18px;
@@ -90,149 +105,143 @@
   place-items: center;
   font-size: 28px;
   font-weight: 700;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.25);
 }
 
-.profile-info__data {
+.fields {
   flex: 1;
 }
 
-.profile-info__row {
+.row {
   display: grid;
   grid-template-columns: 130px 1fr;
   gap: 14px;
   padding: 6px 0;
 }
 
-.profile-info__label {
+.label {
   font-size: 14px;
   opacity: 0.7;
 }
 
-.profile-info__value {
+.value {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* INPUT */
+/* =========================INPUT========================= */
 
-.profile-input {
+.input {
   width: 220px;
   padding: 8px 12px;
   font-size: 14px;
-  color: #ffffff;
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
 }
 
-.profile-input:focus {
-  outline: none;
-  border-color: #1e90ff;
-}
+/* =========================BUTTONS========================= */
 
-/* BUTTONS */
-
-.profile-button {
+.btn {
   padding: 10px 14px;
   font-size: 14px;
   border-radius: 12px;
   cursor: pointer;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.18);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
 }
 
-.profile-button:hover {
-  background: rgba(255,255,255,0.15);
+.btn:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.profile-button--small {
+.btn--small {
   padding: 6px 10px;
   font-size: 13px;
 }
 
-.profile-button--ghost {
+.btn--ghost {
   background: transparent;
 }
 
-/* LOGOUT */
-
-.profile-button--danger {
-  background: rgba(255, 0, 0, 0.35);
+/* Logout ROT */
+.btn--danger {
+  background: rgba(255, 0, 0, 0.4);
   border-color: rgba(255, 0, 0, 0.7);
 }
 
-.profile-button--danger:hover {
-  background: rgba(255, 0, 0, 0.5);
+.btn--danger:hover {
+  background: rgba(255, 0, 0, 0.6);
 }
 
-/* STATS */
+/* =========================STATISTICS========================= */
 
-.profile-section-title {
-  margin: 0 0 12px;
+.section-title {
+  margin: 0 0 14px;
   font-size: 20px;
   font-weight: 600;
 }
 
-.profile-stats {
+.stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
-.profile-stats__item {
-  text-align: center;
-  background: rgba(255,255,255,0.06);
-  padding: 12px;
+.stat {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 14px;
   border-radius: 14px;
+  text-align: center;
 }
 
-.profile-stats__value {
+
+
+
+
+.stat__value {
   font-size: 30px;
   font-weight: 700;
 }
-
-.profile-stats__label {
-  font-size: 13px;
-  opacity: 0.7;
+ /* Schrift für statistics*/
+.stat__label {
+  font-size: 14px;          
+  font-weight: 500;         
+  opacity: 1;               
+  color: #f1830e;         
+  letter-spacing: 0.2px;    
 }
 
-/* ACCOUNT */
 
-.profile-account-actions {
+/* =========================ACCOUNT========================= */
+
+.actions {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-/* TEXT */
-
-.profile-text--muted {
+.muted {
   font-size: 13px;
   opacity: 0.65;
 }
 
-/* MOBILE */
+/* =========================MOBILE========================= */
 
 @media (max-width: 700px) {
-  .profile-info {
+  .user {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .profile-info__row {
+  .row {
     grid-template-columns: 1fr;
   }
 
-  .profile-input {
+  .input {
     width: 100%;
-  }
-
-  .profile-info__avatar {
-    width: 64px;
-    height: 64px;
-    font-size: 24px;
   }
 }

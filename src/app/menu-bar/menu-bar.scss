@@ -1,44 +1,79 @@
-/* Hier schreibt man die styling für Menubar.*/
+/* =========================MENUBAR STYLING========================= */
 
 :host {
   display: block;
 }
 
+/* =========================NAVBAR========================= */
+
 .navbar {
   height: 56px;
   background: #3f4658;
   color: #eef2f7;
+
   display: flex;
   align-items: center;
+
   padding: 0 22px;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
+/* =========================GAME NAME========================= */
 
 .gameName {
   font-size: 18px;
   font-weight: 800;
   margin-right: 24px;
+  white-space: nowrap;
 }
+
+/* =========================NAV========================= */
 
 .nav {
   margin-left: auto;
+
   display: flex;
   align-items: center;
   gap: 34px;
+
+  flex-wrap: nowrap;        /*  niemals umbrechen */
+  overflow-x: auto;         /*  horizontal scroll bei kleiner Breite */
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;    /* Firefox */
 }
+
+.nav::-webkit-scrollbar {
+  display: none;            /* Chrome / Safari */
+}
+
+/* =========================NAV LINKS========================= */
 
 .nav a {
   color: #eef2f7;
   text-decoration: none;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+
   min-width: 78px;
   padding: 6px 4px;
   border-radius: 8px;
+
   opacity: 0.9;
   transition: background 0.15s ease, opacity 0.15s ease;
+
+  flex: 0 0 auto;           /* ❗ nicht schrumpfen */
 }
+
+/* =========================TEXT========================= */
 
 .nav a span {
   font-size: 11px;
@@ -47,6 +82,8 @@
   letter-spacing: 0.35px;
   color: rgba(238, 242, 247, 0.75);
 }
+
+/* =========================ICONS========================= */
 
 .nav a svg {
   width: 18px;
@@ -58,22 +95,61 @@
   stroke-linejoin: round;
 }
 
+/* =========================HOVER========================= */
+
 .nav a:hover {
   background: rgba(255, 255, 255, 0.06);
   opacity: 1;
 }
 
-/* Aktive Page erkenntbar machen, damit man weißt wo man sich gerade befindet. */
+/* =========================ACTIVE LINK========================= */
+
 .nav a.active {
-  background: transparent;        
+  background: transparent;
 }
 
 .nav a.active span {
-  color: #ebff6c;                  
+  color: #ebff6c;
 }
 
 .nav a.active svg {
-  stroke: #ebff6c;              
+  stroke: #ebff6c;
 }
 
+/* =========================TABLET / SMALL DESKTOP========================= */
 
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .nav {
+    gap: 18px;
+  }
+
+  .nav a {
+    min-width: 64px;
+  }
+
+  .nav a span {
+    font-size: 10px;
+  }
+}
+
+/* =========================MOBILE (ICONS ONLY)========================= */
+
+@media (max-width: 650px) {
+  .nav a span {
+    display: none;          /* nur Icons */
+  }
+
+  .nav a {
+    min-width: auto;
+    padding: 8px 10px;
+  }
+
+  .nav a svg {
+    width: 20px;
+    height: 20px;
+  }
+}

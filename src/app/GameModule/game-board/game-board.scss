@@ -1,0 +1,184 @@
+/* ==================== HOST / PAGE ==================== */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #17202b;
+  padding: clamp(14px, 2.2vw, 56px);
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==================== GAME PAGE ==================== */
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+/* ==================== PLAYER INFO (HORIZONTAL) ==================== */
+
+.game-info {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  align-items: center;
+  gap: clamp(8px, 1.5vw, 20px);
+
+  padding: clamp(10px, 1.6vw, 18px);
+  border-radius: 16px;
+
+  background: rgba(43, 47, 54, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.info-left,
+.info-middle,
+.info-right {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.4vw, 6px);
+  min-width: 0;
+}
+
+.info-left   { text-align: left; }
+.info-middle { text-align: center; }
+.info-right  { text-align: right; }
+
+.info-title {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(10px, 0.7vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.info-value {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: clamp(12px, 1vw, 18px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==================== BOARDS WRAPPER ==================== */
+
+.boards {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: clamp(16px, 2vw, 56px);
+
+  justify-content: center;
+  align-items: start;
+
+  padding-inline: clamp(16px, 1.8vw, 28px);
+
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+/* ==================== BOARD TITLES ==================== */
+
+.board-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-title {
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: clamp(16px, 1.2vw, 24px);
+}
+
+/* ==================== GAME BOARD GRID ==================== */
+
+.board {
+  --host-pad: clamp(14px, 2.2vw, 56px);
+  --inner-pad: clamp(16px, 1.8vw, 28px);
+  --between: clamp(16px, 2vw, 56px);
+
+  --available: calc(
+    100vw
+    - (2 * var(--host-pad))
+    - (2 * var(--inner-pad))
+    - var(--between)
+    - 40px
+  );
+
+  --cell: clamp(28px, calc(var(--available) / 22), 72px);
+  --gap: clamp(2px, calc(var(--cell) / 20), 4px);
+
+  display: grid;
+  grid-template-columns: var(--cell) repeat(10, var(--cell));
+  grid-template-rows: var(--cell) repeat(10, var(--cell));
+  gap: var(--gap);
+
+  background: #2b2f36;
+  padding: clamp(8px, calc(var(--cell) / 6), 18px);
+  border-radius: clamp(10px, 1vw, 16px);
+
+  width: max-content;
+}
+
+/* ==================== CELLS ==================== */
+
+.cell {
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  border-radius: clamp(4px, calc(var(--cell) / 10), 10px);
+  user-select: none;
+  font-size: clamp(12px, calc(var(--cell) / 4.8), 20px);
+}
+
+.head {
+  background: #6c6f74;
+  color: #ffffff;
+}
+
+.corner {
+  background: #6c6f74;
+}
+
+.water {
+  background: #87a3c6;
+}
+
+.water:hover {
+  filter: brightness(1.07);
+  cursor: pointer;
+}
+
+/* ==================== FÜR KLEINERE MONITORE ==================== */
+
+@media (max-width: 900px) {
+  :host {
+    padding: 12px;
+  }
+
+  .boards {
+    padding-inline: 10px;
+    gap: 12px;
+  }
+
+  .game-info {
+    gap: 10px;
+  }
+}
