@@ -1,13 +1,30 @@
+<div class="wrap">
+  <h2 class="title">Battleship Ship Placemenent</h2>
 
+  <div class="layout">
+    <!-- Links: Ship List -->
+    <div class="panel">
+      <div class="panel-title">Ships</div>
 
-<div class="ship-list">
+      <div class="ship-list" id="shipList">
+        <div class="ship" data-len="5" data-name="Carrier">Carrier</div>
+        <div class="ship" data-len="4" data-name="Battleship">Battleship</div>
+        <div class="ship" data-len="3" data-name="Cruiser">Cruiser</div>
+        <div class="ship" data-len="3" data-name="Submarine">Submarine</div>
+        <div class="ship" data-len="2" data-name="Destroyer">Destroyer</div>
+      </div>
 
-  <div class="ship carrier">Carrier</div>
-  <div class="ship battleship">Battleship</div>
-  <div class="ship cruiser">Cruiser</div>
-  <div class="ship submarine">Submarine</div>
-  <div class="ship destroyer">Destroyer</div>
+      <button class="rotate-btn" id="rotateBtn">↻ Rotate selected</button>
 
+      <div class="hint">
+        Tip: Ziehen & loslassen → snappt aufs Raster.<br />
+        Doppelklick auf Schiff = rotate.
+      </div>
+    </div> 
+
+    <!-- Rechts: Board -->
+    <div class="board-wrap">
+      <div class="board" id="board" aria-label="Board"></div>
+    </div>
+  </div>
 </div>
-
-<button class="rotate-btn">↻ Rotate</button>

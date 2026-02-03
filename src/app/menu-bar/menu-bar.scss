@@ -7,7 +7,11 @@
 /* =========================NAVBAR========================= */
 
 .navbar {
-  height: 56px;
+   min-height: 56px;     /* statt height */
+  height: auto;
+  flex-wrap: wrap;      /* darf umbrechen wenn nötig */
+  row-gap: 6px;
+  
   background: #3f4658;
   color: #eef2f7;
 
@@ -24,6 +28,7 @@
 /* =========================GAME NAME========================= */
 
 .gameName {
+  flex: 0 0 auto;           /*  nicht schrumpfen */
   font-size: 18px;
   font-weight: 800;
   margin-right: 24px;
@@ -70,7 +75,7 @@
   opacity: 0.9;
   transition: background 0.15s ease, opacity 0.15s ease;
 
-  flex: 0 0 auto;           /* ❗ nicht schrumpfen */
+  flex: 0 0 auto;           /*  nicht schrumpfen */
 }
 
 /* =========================TEXT========================= */
@@ -153,3 +158,6 @@
     height: 20px;
   }
 }
+
+
+/*==========================================Für neue Einstellungen=======================*/

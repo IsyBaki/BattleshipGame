@@ -76,19 +76,25 @@
   text-overflow: ellipsis;
 }
 
-/* ==================== BOARDS WRAPPER ==================== */
+/* ==================== BOARDS WRAPPER (RESPONSIVE FIX) ==================== */
 
 .boards {
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+
+  /* Desktop: 2 Boards nebeneinander, aber sie dürfen schrumpfen */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(16px, 2vw, 56px);
 
-  justify-content: center;
   align-items: start;
+
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 
   padding-inline: clamp(16px, 1.8vw, 28px);
 
-  overflow-x: auto;
+  /*  kein forced horizontal scroll mehr */
+  overflow-x: visible;
   padding-bottom: 10px;
 }
 
@@ -98,6 +104,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: 100%;
+  min-width: 0; /* wichtig, damit Grid schrumpfen darf */
 }
 
 .board-title {
@@ -107,45 +116,41 @@
   font-size: clamp(16px, 1.2vw, 24px);
 }
 
-/* ==================== GAME BOARD GRID ==================== */
+/* ==================== GAME BOARD GRID (RESPONSIVE FIX) ==================== */
 
 .board {
-  --host-pad: clamp(14px, 2.2vw, 56px);
-  --inner-pad: clamp(16px, 1.8vw, 28px);
-  --between: clamp(16px, 2vw, 56px);
+  /* Board passt sich der Spalte an */
+  width: 100%;
+  max-width: 450px;  /* optisches Maximum, für das spielfeld, bei vollem Fenster ist das 450px groß */
+  margin: 0 auto;
 
-  --available: calc(
-    100vw
-    - (2 * var(--host-pad))
-    - (2 * var(--inner-pad))
-    - var(--between)
-    - 40px
-  );
-
-  --cell: clamp(28px, calc(var(--available) / 22), 72px);
-  --gap: clamp(2px, calc(var(--cell) / 20), 4px);
-
+  /* 11x11 Grid (Ecke + 10 Spalten/Zeilen) */
   display: grid;
-  grid-template-columns: var(--cell) repeat(10, var(--cell));
-  grid-template-rows: var(--cell) repeat(10, var(--cell));
+  grid-template-columns: repeat(11, 1fr);
+
+  /* spacing */
+  --gap: clamp(2px, 0.6vw, 6px);
   gap: var(--gap);
 
-  background: #2b2f36;
-  padding: clamp(8px, calc(var(--cell) / 6), 18px);
+  background: #1d1c1c;
+  padding: clamp(8px, 1.2vw, 18px);
   border-radius: clamp(10px, 1vw, 16px);
-
-  width: max-content;
 }
 
 /* ==================== CELLS ==================== */
 
 .cell {
+  /* macht alle Felder quadratisch  */
+  aspect-ratio: 1 / 1;
+
   display: grid;
   place-items: center;
+
   font-weight: 700;
-  border-radius: clamp(4px, calc(var(--cell) / 10), 10px);
+  border-radius: clamp(4px, 0.6vw, 10px);
   user-select: none;
-  font-size: clamp(12px, calc(var(--cell) / 4.8), 20px);
+
+  font-size: clamp(12px, 1.2vw, 20px);
 }
 
 .head {
@@ -166,14 +171,16 @@
   cursor: pointer;
 }
 
-/* ==================== FÜR KLEINERE MONITORE ==================== */
+/* ==================== FÜR KLEINERE MONITORE / MOBILE ==================== */
 
-@media (max-width: 900px) {
+@media (max-width: 500px) {
   :host {
     padding: 12px;
   }
 
+  /* Boards untereinander statt nebeneinander */
   .boards {
+    grid-template-columns: 1fr;
     padding-inline: 10px;
     gap: 12px;
   }
@@ -181,4 +188,10 @@
   .game-info {
     gap: 10px;
   }
+
+  .board {
+    max-width: 520px; /* bleibt zentriert */
+  }
 }
+
+/* ==================== FÜR neue Einstellungen, später ==================== */

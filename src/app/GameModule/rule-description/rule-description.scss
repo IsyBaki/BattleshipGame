@@ -12,7 +12,8 @@
 .container {
   max-width: 900px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(clamp(100px, 45vw, 220px), 1fr)); /**Damit die Card genug groß sind*/
+
   gap: 48px;
   margin: 0 auto;
 
@@ -22,7 +23,7 @@
 .card {
   position: relative;
   height: 0;
-  padding-bottom: 120%;
+  padding-bottom: clamp(70%, 90vw, 110%); /*damit die car nicht risig aussehen. */
   cursor: pointer;
 
   --offset-multiplier: 4px;

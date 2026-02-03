@@ -1,50 +1,131 @@
-.ship-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* ✅ WICHTIG: Variablen in :host (funktioniert sicher in Angular Component SCSS) */
+:host{
+  --cell: 38px;     /* Rastergröße */
+  --grid: 10;       /* 10x10 */
+  --bg: #17202b;
+
+  display: block;
+  min-height: calc(100vh - 56px);
+  background: var(--bg);
+  color: #fff;
+  padding: 18px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Layout Wrapper */
+.wrap{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title{
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+.layout{
+  display: grid;
+  grid-template-columns: 280px 1fr;
   gap: 18px;
 }
 
-/* Basis-Schiff */
-.ship {
-  height: 60px;
+/* Left panel */
+.panel{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.panel-title{
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.ship-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Ship */
+.ship{
+  height: var(--cell);
+  width: calc(var(--cell) * 4); /* default, wird per TS gesetzt */
+  border-radius: 10px;
   background: linear-gradient(135deg, #6b7280, #4b5563);
-  border-radius: 8px;
+  box-shadow: 0 8px 14px rgba(0,0,0,.45);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-
-  cursor: grab;
+  font-weight: 800;
   user-select: none;
+  cursor: grab;
 
-  box-shadow: 0 8px 14px rgba(0,0,0,.45);
+  touch-action: none; /* wichtig für Touch-Drag */
 }
 
-/* Größen nach Battleship-Regeln */
-.ship.carrier     { width: 300px; } /* 5 */
-.ship.battleship  { width: 240px; } /* 4 */
-.ship.cruiser     { width: 180px; } /* 3 */
-.ship.submarine   { width: 180px; } /* 3 */
-.ship.destroyer   { width: 120px; } /* 2 */
+.ship:active{ cursor: grabbing; }
 
-/* Rotate Button */
-.rotate-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
+.ship.selected{
+  outline: 3px solid rgba(235,255,108,0.9);
+  outline-offset: 2px;
+}
+
+/* Button */
+.rotate-btn{
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px 14px;
   border-radius: 10px;
   border: none;
 
   background: #9ca3af;
   color: #111;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
 }
+.rotate-btn:hover{ background:#d1d5db; }
 
-.rotate-btn:hover {
-  background: #d1d5db;
+.hint{
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+/* Board */
+.board-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.board{
+  position: relative;
+  width: calc(var(--cell) * var(--grid));
+  height: calc(var(--cell) * var(--grid));
+  border-radius: 14px;
+  background:
+    linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px),
+    rgba(43,47,54,0.95);
+  background-size: var(--cell) var(--cell);
+  border: 1px solid rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+
+/* Wenn Schiff im Board liegt, wird es absolut positioniert */
+.board .ship{
+  position: absolute;
+  margin: 0;
+  z-index: 2;
+}
+
+/* Mobile Layout */
+@media (max-width: 900px){
+  .layout{ grid-template-columns: 1fr; }
+  .board-wrap{ justify-content: center; }
 }

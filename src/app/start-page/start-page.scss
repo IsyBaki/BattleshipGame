@@ -1,4 +1,5 @@
-/* Grundlayout  für die start-page*/
+/* ==================== START PAGE ==================== */
+
 .start-page {
   min-height: 100vh;
   width: 100%;
@@ -9,33 +10,44 @@
   align-items: center;
   text-align: center;
 
+  /* wichtig für Mobile */
+  padding: clamp(16px, 5vw, 56px);
 }
 
-/* Title für die start-page*/
+/* innerer Wrapper */
+.start-page > div {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* ==================== TITLE ==================== */
+
 .start-page h1 {
-  font-size: 3.2rem;
+  font-size: clamp(1.9rem, 5.5vw, 3.2rem);
   font-weight: 800;
-  margin-bottom: 18px;
+  margin-bottom: clamp(10px, 2.5vw, 18px);
   color: #000;
+  line-height: 1.1;
 }
 
-/* Beschreibungstext wie <p>..<p> */
+/* ==================== DESCRIPTION ==================== */
+
 .start-page p {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
   font-weight: 500;
-  margin-bottom: 28px;
+  margin-bottom: clamp(16px, 4vw, 28px);
   color: #000;
 }
 
-/* Buttons, nur Startseite */
+/* ==================== BUTTONS ==================== */
+
 .start-page button {
-  //width: 220px;
-  //height: 52px;
-  padding: 16px 32px;
-  font-size: 1.15rem;
+  padding: clamp(10px, 3.2vw, 16px) clamp(14px, 4vw, 32px);
+  font-size: clamp(0.95rem, 3.5vw, 1.15rem);
   font-weight: 700;
-  line-height: 1.2;  
-  border-radius: 6px;
+  line-height: 1.2;
+
+  border-radius: 8px;
   border: none;
 }
 
@@ -60,4 +72,18 @@
 .description-btn:hover,
 .tips-btn:hover {
   filter: brightness(1.05);
+}
+
+/* ==================== MOBILE FIX ==================== */
+
+@media (max-width: 600px) {
+  .start-page .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px !important; /* überschreibt Bootstrap gap */
+  }
+
+  .start-page .buttons .btn {
+    width: 100%;
+  }
 }

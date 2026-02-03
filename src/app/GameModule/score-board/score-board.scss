@@ -1,0 +1,67 @@
+/*====================History Page Styles==========================*/
+.history-page {
+  min-height: calc(100vh - 56px);
+  background: #334d6d;
+}
+
+.history-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-title h2 {
+  margin: 0;
+  color: white;
+}
+
+/* Card */
+.card {
+  background: rgba(21, 22, 19, 0.92);
+  border-radius: 14px;
+  padding: 16px;
+  color: #fff;
+}
+
+.card small {
+  opacity: 0.9;
+}
+
+/* große Zahl */
+.num {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/*====================Farbe für boxen==========================*/
+.card.game-wins {
+  background-color: #198754
+;
+}
+
+.card.game-losses {
+  background-color: #dc3545;
+}
+
+/* ===============Zentrierung der Inhalte in den Boxen=========== */
+.card.game-total,
+.card.game-wins,
+.card.game-losses {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/*==================== Design für Mobile==========================*/
+/* Mobile */
+@media (max-width: 600px) {
+  .history-container {
+    padding: 12px;
+  }
+
+  .num {
+    font-size: 20px;
+  }
+}
