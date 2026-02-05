@@ -1,7 +1,7 @@
 :host {
   display: block;
    min-height: 100vh;   
-  background-color: #AFC3DE;
+  background-color: #17202b;
   
 }
 
@@ -33,9 +33,9 @@
 }
 
 
-/* dunkeler Bereich */
+/* dunkeler Bereich, die div für alle drei Bereichen */
 .page-container {
-  background: rgba(21, 22, 19, 0.952);
+  background: #17202b; 
   border-radius: 20px;
   padding: 24px;
 }

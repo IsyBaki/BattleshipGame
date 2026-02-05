@@ -1,1 +1,50 @@
-<p>lobby works!</p>
+<div class="lobby-page">
+  <h2 class="title">Lobby</h2>
+
+  <!-- Online -->
+  <section class="panel">
+    <div class="panel-title">Online</div>
+
+    <div class="actions">
+      <button class="btn primary" type="button" id="createRoomBtn">
+        Create Online Game
+      </button>
+
+      <button class="btn" type="button" id="quickMatchBtn">
+        Quick Match
+      </button>
+    </div>
+
+    <div class="sub-title">Available Rooms</div>
+
+    <!-- Room List (später per TS dynamisch füllen) -->
+    <div class="room-list" aria-label="Room list">
+      <!-- Beispiel-Einträge (kann man später entfernen) -->
+      <div class="room">
+        <div class="room-main">
+          <div class="room-name">Room A</div>
+          <div class="room-meta">Host: Isy • Players: 1/2</div>
+        </div>
+        <button class="btn small" type="button" routerLink="/gameroom">Join</button>
+      </div>
+
+      <div class="room">
+        <div class="room-main">
+          <div class="room-name">Room B</div>
+          <div class="room-meta">Host: Baki • Players: 2/2</div>
+        </div>
+        <button class="btn small" type="button" disabled>Full</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local / Hotseat -->
+  <section class="panel">
+  <div class="panel-title">Local</div>
+
+  <a class="btn primary" routerLink="/hotseat">
+    Hot Seat (2 Players on one device)
+  </a>
+</section>
+
+</div>

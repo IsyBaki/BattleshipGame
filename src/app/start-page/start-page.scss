@@ -3,7 +3,7 @@
 .start-page {
   min-height: 100vh;
   width: 100%;
-  background-color: #AFC3DE;
+  background-color: #17202b;
 
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@
   font-size: clamp(1.9rem, 5.5vw, 3.2rem);
   font-weight: 800;
   margin-bottom: clamp(10px, 2.5vw, 18px);
-  color: #000;
+  color: #dcd7d7;
   line-height: 1.1;
 }
 
@@ -36,7 +36,7 @@
   font-size: clamp(1rem, 3.5vw, 1.4rem);
   font-weight: 500;
   margin-bottom: clamp(16px, 4vw, 28px);
-  color: #000;
+  color: #dcd7d7;
 }
 
 /* ==================== BUTTONS ==================== */
@@ -53,18 +53,18 @@
 
 /* Button Farben */
 .start-page-btn {
-  background-color: #57f214;
-  color: #000;
+  background-color: #2b6f0e;
+  color: #dcd7d7;
 }
 
 .description-btn {
-  background-color: #5088F8;
-  color: #000;
+  background-color: #4265ab;
+  color: #dcd7d7;
 }
 
 .tips-btn {
-  background-color: #F0D838;
-  color: #000;
+  background-color: #c2b562;
+  color: #dcd7d7;
 }
 
 /* Hover */

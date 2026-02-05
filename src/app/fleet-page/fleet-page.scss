@@ -1,131 +1,169 @@
-/* ✅ WICHTIG: Variablen in :host (funktioniert sicher in Angular Component SCSS) */
+/* ==================== HOST ==================== */
 :host{
-  --cell: 38px;     /* Rastergröße */
-  --grid: 10;       /* 10x10 */
-  --bg: #17202b;
-
   display: block;
-  min-height: calc(100vh - 56px);
-  background: var(--bg);
+  min-height: 100vh;
+  background-color: #17202b;
+  padding: clamp(14px, 2.2vw, 56px);
   color: #fff;
-  padding: 18px;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Layout Wrapper */
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+/* ==================== WRAP ==================== */
 .wrap{
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .title{
-  margin: 0 0 14px;
-  font-size: 20px;
+  font-size: clamp(20px, 1.6vw, 26px);
+  font-weight: 800;
+  margin-bottom: clamp(12px, 1.6vw, 18px);
 }
 
+/* ==================== FLEET BOX ==================== */
+.fleet-box{
+  background: rgba(30, 35, 44, 0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: clamp(18px, 2.4vw, 32px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.35);
+}
+
+/* ==================== LAYOUT ==================== */
+/* Desktop: 2 Spalten / darf schrumpfen (wie bei deinem Boards CSS) */
 .layout{
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 18px;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 56px);
+  align-items: stretch;
 }
 
-/* Left panel */
+/* ==================== PANELS ==================== */
 .panel{
-  background: rgba(255,255,255,0.06);
+  height: 100%;
+  background: rgba(43,47,54,0.9);
+  border-radius: 16px;
+  padding: clamp(14px, 1.6vw, 18px);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 14px;
 }
 
+/* Titel im Panel (kein justify-content nötig) */
 .panel-title{
   font-weight: 800;
   margin-bottom: 12px;
 }
 
+/* ==================== SHIPS ==================== */
 .ship-list{
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 12px; /*  wie GameBoard: kompakt */
 }
 
-/* Ship */
+/*  Ship soll sich der Panel-Breite anpassen */
 .ship{
-  height: var(--cell);
-  width: calc(var(--cell) * 4); /* default, wird per TS gesetzt */
-  border-radius: 10px;
+  height: clamp(36px, 3.2vw, 46px);
+  width: 70%;
+  border-radius: 12px;
+
   background: linear-gradient(135deg, #6b7280, #4b5563);
-  box-shadow: 0 8px 14px rgba(0,0,0,.45);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-weight: 800;
-  user-select: none;
+  font-weight: 700;
   cursor: grab;
-
-  touch-action: none; /* wichtig für Touch-Drag */
+  user-select: none;
+  touch-action: none;
 }
 
-.ship:active{ cursor: grabbing; }
-
 .ship.selected{
-  outline: 3px solid rgba(235,255,108,0.9);
+  outline: 3px solid rgba(235,255,108,.9);
   outline-offset: 2px;
 }
 
-/* Button */
+/*  Button immer volle Breite */
 .rotate-btn{
   margin-top: 14px;
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 12px;
   border: none;
-
-  background: #9ca3af;
-  color: #111;
   font-weight: 800;
   cursor: pointer;
 }
-.rotate-btn:hover{ background:#d1d5db; }
 
-.hint{
-  margin-top: 12px;
-  font-size: 12px;
-  opacity: 0.75;
-  line-height: 1.4;
-}
-
-/* Board */
-.board-wrap{
+/* ==================== BOARD ==================== */
+.board-panel{
   display: flex;
-  justify-content: center;
-  align-items: start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /*  wirkt schöner bei gleicher Panel-Höhe */
 }
 
+.board-title{
+  margin: 0 0 14px;
+  font-weight: 800;
+  font-size: clamp(18px, 1.4vw, 28px);
+}
+
+/* */
 .board{
-  position: relative;
-  width: calc(var(--cell) * var(--grid));
-  height: calc(var(--cell) * var(--grid));
-  border-radius: 14px;
-  background:
-    linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px),
-    rgba(43,47,54,0.95);
-  background-size: var(--cell) var(--cell);
-  border: 1px solid rgba(255,255,255,0.10);
-  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+
+  --gap: clamp(2px, 0.6vw, 6px);
+  gap: var(--gap);
+
+  background: #1d1c1c;
+  padding: clamp(10px, 1.2vw, 18px);
+  border-radius: clamp(10px, 1vw, 16px);
 }
 
-/* Wenn Schiff im Board liegt, wird es absolut positioniert */
-.board .ship{
-  position: absolute;
-  margin: 0;
-  z-index: 2;
+.cell{
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+
+  border-radius: clamp(4px, 0.6vw, 10px);
+  font-weight: 700;
+  font-size: clamp(12px, 1.1vw, 18px);
 }
 
-/* Mobile Layout */
-@media (max-width: 900px){
-  .layout{ grid-template-columns: 1fr; }
-  .board-wrap{ justify-content: center; }
+.head{ background: #6c6f74; color: #fff; }
+.corner{ background: #6c6f74; }
+.water{ background: #87a3c6; }
+
+/* ==================== RESPONSIVE (wie GameBoard) ==================== */
+@media (max-width: 500px){
+  :host{
+    padding: 12px;
+  }
+
+  /*  untereinander statt nebeneinander */
+  .layout{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /*  Schiffe + Button gleich groß*/
+  .ship{
+    height: 44px;
+  }
+
+  .board{
+    max-width: 520px;
+  }
 }

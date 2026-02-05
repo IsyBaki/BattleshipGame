@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hot-seat-module',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './hot-seat-module.html',
   styleUrl: './hot-seat-module.scss',
 })
