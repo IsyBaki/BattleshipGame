@@ -1,11 +1,11 @@
-
 /* ==================== HOST / PAGE ==================== */
 :host{
   display: block;
   min-height: 100vh;
-  background-color: #17202b;
+  background: #17202b;
   padding: clamp(14px, 2.2vw, 56px);
-  box-sizing: border-box;
+  color: #fff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 *,
@@ -14,143 +14,177 @@
   box-sizing: border-box;
 }
 
-/* ==================== GAME PAGE ==================== */
-.game-page{
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 2vw, 24px);
+/* ==================== PAGE ==================== */
+.room-page{
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* ==================== TOP INFO ==================== */
-.game-info{
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
+/* ==================== TITLE ==================== */
+.room-title{
+  margin-bottom: clamp(14px, 1.8vw, 22px);
+  font-size: clamp(22px, 1.8vw, 28px);
+  font-weight: 800;
+}
 
-  display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr;
+/* ==================== CARD ==================== */
+.room-card{
+  background: rgba(30,35,44,0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: clamp(18px, 2.4vw, 32px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.35);
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2vw, 26px);
+}
+
+/* ==================== HEADER ==================== */
+.room-header{
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: clamp(8px, 1.5vw, 20px);
+  gap: 12px;
+}
 
-  padding: clamp(10px, 1.6vw, 18px);
+.room-name{
+  font-weight: 900;
+  font-size: clamp(18px, 1.4vw, 22px);
+}
+
+.room-code{
+  font-size: clamp(12px, 1vw, 14px);
+  opacity: 0.8;
+}
+
+.room-code-value{
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* ==================== SECTION ==================== */
+.room-section{
+  background: rgba(43,47,54,0.9);
   border-radius: 16px;
-
-  background: rgba(43, 47, 54, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-
-  position: sticky;
-  top: 0;
-  z-index: 5;
+  padding: clamp(14px, 1.6vw, 20px);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-.info-left,
-.info-middle,
-.info-right{
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2px, 0.4vw, 6px);
-  min-width: 0;
-}
-
-.info-left{ text-align: left; }
-.info-middle{ text-align: center; }
-.info-right{ text-align: right; }
-
-.info-title{
-  color: rgba(255, 255, 255, 0.65);
-  font-size: clamp(10px, 0.7vw, 12px);
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
-.info-value{
-  color: #ffffff;
-  font-weight: 700;
-  font-size: clamp(12px, 1vw, 18px);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ==================== BOARDS WRAPPER ==================== */
-.boards{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 56px);
-
-  align-items: start;
-
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-
-  padding-inline: clamp(16px, 1.8vw, 28px);
-}
-
-/* ==================== BOARD WRAP ==================== */
-.board-wrap{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-}
-
-.board-title{
-  color: #ffffff;
+.room-section-title{
+  font-weight: 800;
   margin-bottom: 12px;
+}
+
+/* ==================== PLAYERS ==================== */
+.player-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.player-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.player-dot.is-online{
+  background: #22c55e;
+}
+
+.player-dot.is-waiting{
+  background: #facc15;
+}
+
+.player-name{
   font-weight: 700;
-  font-size: clamp(16px, 1.2vw, 24px);
 }
 
-/* ==================== BOARD GRID ==================== */
-.board{
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-
-  --gap: clamp(2px, 0.6vw, 6px);
-  gap: var(--gap);
-
-  background: #1d1c1c;
-  padding: clamp(8px, 1.2vw, 18px);
-  border-radius: clamp(10px, 1vw, 16px);
+/* ==================== PLAYER STATUS ==================== */
+.player-status{
+  font-weight: 800;
+  font-size: 14px;
 }
 
-/* ==================== CELLS ==================== */
-.cell{
-  aspect-ratio: 1 / 1;
-  display: grid;
-  place-items: center;
-
-  font-weight: 700;
-  border-radius: clamp(4px, 0.6vw, 10px);
-  user-select: none;
-
-  font-size: clamp(12px, 1.2vw, 20px);
+.player-status.is-ready{
+  color: #22c55e;
 }
 
-.head{
-  background: #6c6f74;
-  color: #ffffff;
+.player-status.is-waiting{
+  color: #facc15;
 }
 
-.corner{
-  background: #6c6f74;
+/* ==================== STATUS TEXT ==================== */
+.room-status{
+  text-align: center;
+  opacity: 0.8;
+  font-size: clamp(13px, 1.1vw, 15px);
 }
 
-.water{
-  background: #87a3c6;
+/* ==================== ACTIONS ==================== */
+.room-actions{
+  display: flex;
+  gap: 14px;
 }
 
-.water:hover{
-  filter: brightness(1.07);
+/* ==================== BUTTON FIX (SEHR WICHTIG) ==================== */
+/* überschreibt evtl. globale .btn styles */
+.room-actions .btn{
+  flex: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+
+  background: #9ca3af;
+  color: #111;
+  font-weight: 800;
   cursor: pointer;
+
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.room-actions .btn.primary{
+  background: #e5e7eb;
+  color: #111;
+}
+
+.room-actions .btn.secondary{
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+
+.room-actions .btn:hover{
+  filter: brightness(1.05);
+}
+
+.room-actions .btn:active{
+  transform: translateY(1px);
+}
+
+/* Disabled MUSS sichtbar sein */
+.room-actions .btn:disabled{
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: none;
 }
 
 /* ==================== MOBILE ==================== */
@@ -159,17 +193,13 @@
     padding: 12px;
   }
 
-  .boards{
-    grid-template-columns: 1fr;
-    padding-inline: 10px;
-    gap: 12px;
+  .room-header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 
-  .game-info{
-    gap: 10px;
-  }
-
-  .board{
-    max-width: 520px;
+  .room-actions{
+    flex-direction: column;
   }
 }

@@ -1,71 +1,51 @@
-<div class="game-page">
+<div class="room-page">
+  <h2 class="room-title">Game Room</h2>
 
-  <!-- ===== Top Info Bar ===== -->
-  <div class="game-info">
-    <div class="info-left">
-      <div class="info-title">Player</div>
-      <div class="info-value">Player 1</div>
+  <div class="room-card">
+    <!-- ===== Room Info ===== -->
+    <div class="room-header">
+      <div class="room-name">Room A</div>
+      <div class="room-code">Code: <span class="room-code-value">A7K3</span></div>
     </div>
 
-    <div class="info-middle">
-      <div class="info-title">Turn</div>
-      <div class="info-value">Your turn</div>
-    </div>
+    <!-- ===== Players ===== -->
+    <div class="room-section">
+      <div class="room-section-title">Players</div>
 
-    <div class="info-right">
-      <div class="info-title">Mode</div>
-      <div class="info-value">Hotseat</div>
-    </div>
-  </div>
+      <div class="player-list">
+        <div class="player-row">
+          <div class="player-left">
+            <div class="player-dot is-online"></div>
+            <div class="player-name">Player 1 (Host)</div>
+          </div>
+          <div class="player-status is-ready">Ready</div>
+        </div>
 
-  <!-- ===== Boards ===== -->
-  <div class="boards">
-
-    <!-- Ocean -->
-    <div class="board-wrap">
-      <h2 class="board-title">Ocean</h2>
-      <div class="board" aria-label="Ocean board">
-        <!-- Ecke -->
-        <div class="cell head corner"></div>
-        <!-- A–J -->
-        <div class="cell head">A</div><div class="cell head">B</div><div class="cell head">C</div><div class="cell head">D</div><div class="cell head">E</div>
-        <div class="cell head">F</div><div class="cell head">G</div><div class="cell head">H</div><div class="cell head">I</div><div class="cell head">J</div>
-
-        <!-- 1–10 (Dummy cells, später per TS dynamisch) -->
-        <div class="cell head">1</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">2</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">3</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">4</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">5</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">6</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">7</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">8</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">9</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">10</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
+        <div class="player-row">
+          <div class="player-left">
+            <div class="player-dot is-waiting"></div>
+            <div class="player-name">Waiting for Player 2…</div>
+          </div>
+          <div class="player-status is-waiting">Waiting</div>
+        </div>
       </div>
     </div>
 
-    <!-- Target -->
-    <div class="board-wrap">
-      <h2 class="board-title">Target</h2>
-      <div class="board" aria-label="Target board">
-        <!-- gleiche Struktur wie Ocean -->
-        <div class="cell head corner"></div>
-        <div class="cell head">A</div><div class="cell head">B</div><div class="cell head">C</div><div class="cell head">D</div><div class="cell head">E</div>
-        <div class="cell head">F</div><div class="cell head">G</div><div class="cell head">H</div><div class="cell head">I</div><div class="cell head">J</div>
-
-        <div class="cell head">1</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">2</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">3</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">4</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">5</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">6</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">7</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">8</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">9</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell head">10</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-      </div>
+    <!-- ===== Status ===== -->
+    <div class="room-status">
+      Waiting for opponent to join…
     </div>
 
+    <!-- ===== Actions ===== -->
+    <div class="room-actions">
+      <button class="btn secondary" type="button">
+        Copy Invite Link
+      </button>
+
+      <!-- Host: disabled until 2/2 ready -->
+      <button class="btn primary" type="button"  routerLink="/fleet">
+        Start Game
+      </button>
+    </div>
   </div>
 </div>

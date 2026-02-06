@@ -1,39 +1,121 @@
-.hotseat-box{
-  max-width: 420px;
+/* ==================== HOST / PAGE ==================== */
+:host{
+  display: block;
+  min-height: 100vh;
+  background: #17202b;
+  padding: clamp(14px, 2.2vw, 56px);
+  color: #fff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+/* ==================== PAGE LAYOUT ==================== */
+.hotseat-page{
+  width: min(820px, calc(100% - 32px)); /* gleiche Logik wie Lobby */
   margin: 0 auto;
-  padding: 24px;
-  background: rgba(43,47,54,0.9);
+}
+
+/* ==================== TITLE ==================== */
+.hotseat-title{
+  margin: 0 0 clamp(12px, 1.6vw, 18px);
+  font-size: clamp(20px, 1.6vw, 28px);
+  font-weight: 800;
+}
+
+/* ==================== CARD ==================== */
+.hotseat-card{
+  width: min(820px, calc(100% - 32px)); /* gleiche Breitenlogik wi lobby */
+  margin: 0 auto;
+
+  padding: clamp(16px, 2vw, 26px);
   border-radius: 18px;
+
+  
+  background: rgba(43, 47, 54, 0.9);
   border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 18px 34px rgba(0,0,0,.28);
 
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(12px, 1.4vw, 18px);
 }
 
-.player-input{
+/* ==================== FORM FIELD ==================== */
+.hotseat-field{
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.player-input label{
+.hotseat-label{
   font-weight: 700;
-  opacity: 0.8;
+  opacity: 0.85;
+  font-size: clamp(12px, 1vw, 14px);
 }
 
-.player-input input{
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
+/* ==================== INPUT ==================== */
+.hotseat-input{
+  width: 100%;
+  padding: clamp(12px, 1.2vw, 14px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+
+  background: rgba(0,0,0,0.18);
+  color: #fff;
+
+  font-size: 16px; /* gut für Mobile */
+  outline: none;
 }
 
-.start-btn{
-  margin-top: 12px;
-  padding: 14px;
+.hotseat-input:focus{
+  border-color: rgba(195, 195, 194, 0.65);
+  
+}
+
+/* ==================== BUTTON ==================== */
+.hotseat-start-btn{
+  margin-top: 6px;
+  width: 100%;
+  padding: clamp(12px, 1.4vw, 16px);
   border-radius: 12px;
   border: none;
-  font-weight: 800;
+
+  background: #e5e7eb;
+  color: #111;
+  font-weight: 900;
+  font-size: clamp(14px, 1.1vw, 16px);
+
   cursor: pointer;
+}
+
+.hotseat-start-btn:active{
+  transform: translateY(1px);
+}
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 500px){
+  :host{
+    padding: 12px;
+  }
+
+  .hotseat-card{
+    width: 100%; /* volle Breite auf Handy */
+  }
+}
+
+/* ==================== LARGE MONITORS ==================== */
+@media (min-width: 1400px){
+  .hotseat-page{
+    width: min(820px, calc(100% - 32px));
+  }
+
+  .hotseat-card{
+    width: min(820px, calc(100% - 32px));
+  }
 }

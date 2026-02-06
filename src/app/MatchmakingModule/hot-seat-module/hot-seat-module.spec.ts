@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { HotSeatModule } from './hot-seat-module';
 
@@ -8,7 +9,8 @@ describe('HotSeatModule', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HotSeatModule]
+      imports: [HotSeatModule],
+      providers: [provideRouter([])], // für ActivatedRoute
     })
     .compileComponents();
 
