@@ -1,26 +1,80 @@
 <div class="fleet-page">
   <h2 class="title">Fleet</h2>
 
-  <!-- ==================== FLEET BOX (eine gemeinsame Box) ==================== -->
   <div class="fleet-box">
-
-    <!-- ==================== Layout: Ships + Board ==================== -->
     <div class="layout">
 
       <!-- ==================== Left: Ships ==================== -->
       <div class="panel ships-panel">
-        <div class="panel-title">Ships</div>
+        <div class="panel-title">Place your ships</div>
 
         <div class="ship-list" id="shipList" aria-label="Ship list">
-          <div class="ship" data-len="5" data-name="Carrier">Carrier</div>
-          <div class="ship" data-len="4" data-name="Battleship">Battleship</div>
-          <div class="ship" data-len="3" data-name="Cruiser">Cruiser</div>
-          <div class="ship" data-len="3" data-name="Submarine">Submarine</div>
-          <div class="ship" data-len="2" data-name="Destroyer">Destroyer</div>
-        </div>
+          <div
+            class="ship"
+            data-len="5"
+            data-name="Carrier"
+            title="Carrier"
+            (click)="selectShip('Carrier')"
+            [class.selected]="isSelected('Carrier')"
+            [class.vertical]="isSelected('Carrier') && isVertical"
+          >
+            <img src="/image/ships/aircraft carrier.png" alt="Carrier" class="ship-img">
+          </div>
 
-        <button class="rotate-btn" id="rotateBtn" type="button">
-          ↻ Rotate selected
+          <div
+            class="ship"
+            data-len="4"
+            data-name="Battleship"
+            title="Battleship"
+            (click)="selectShip('Battleship')"
+            [class.selected]="isSelected('Battleship')"
+            [class.vertical]="isSelected('Battleship') && isVertical"
+          >
+            <img src="/image/ships/battleship.png" alt="Battleship" class="ship-img">
+          </div>
+
+          <div
+            class="ship"
+            data-len="3"
+            data-name="Cruiser"
+            title="Cruiser"
+            (click)="selectShip('Cruiser')"
+            [class.selected]="isSelected('Cruiser')"
+            [class.vertical]="isSelected('Cruiser') && isVertical"
+          >
+            <img src="/image/ships/Cruiser.png" alt="Cruiser" class="ship-img">
+          </div>
+
+          <div
+            class="ship"
+            data-len="3"
+            data-name="Submarine"
+            title="Submarine"
+            (click)="selectShip('Submarine')"
+            [class.selected]="isSelected('Submarine')"
+            [class.vertical]="isSelected('Submarine') && isVertical"
+          >
+            <img src="/image/ships/Submarine.png" alt="Submarine" class="ship-img">
+          </div>
+
+          <div
+            class="ship"
+            data-len="2"
+            data-name="Destroyer"
+            title="Destroyer"
+            (click)="selectShip('Destroyer')"
+            [class.selected]="isSelected('Destroyer')"
+            [class.vertical]="isSelected('Destroyer') && isVertical"
+          >
+            <img src="/image/ships/destroyer.png" alt="Destroyer" class="ship-img">
+          </div>
+        </div>
+        
+        <div class="message" *ngIf="showMessage">
+          please select a ship first!
+      </div>
+        <button class="rotate-btn" id="rotateBtn" type="button" (click)="rotateSelected()">
+          ↻ Rotate
         </button>
       </div>
 
@@ -30,16 +84,13 @@
 
         <div class="board" aria-label="Ocean board">
 
-          <!-- Ecke -->
           <div class="cell head corner"></div>
 
-          <!-- A–J -->
           <div class="cell head">A</div><div class="cell head">B</div><div class="cell head">C</div>
           <div class="cell head">D</div><div class="cell head">E</div><div class="cell head">F</div>
           <div class="cell head">G</div><div class="cell head">H</div><div class="cell head">I</div>
           <div class="cell head">J</div>
 
-          <!-- Rows 1–10 -->
           <div class="cell head">1</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
           <div class="cell head">2</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
           <div class="cell head">3</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
@@ -55,11 +106,9 @@
       </div>
 
     </div>
-    <!--  EIN Button für Ready, wenn Spieler fertig ist -->
-    <button class="fleet-ready-btn" type="button" routerLink="/game">
-      Ready
-    </button>
 
-    
+    <button class="fleet-ready-btn" type="button" (click)="onReadyClick()">
+      {{ readyButtonText }}
+    </button>
   </div>
 </div>

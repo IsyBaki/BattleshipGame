@@ -1,14 +1,47 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-fleet-page',
   standalone: true,
-  imports: [RouterLink], 
+  imports: [RouterLink, CommonModule], 
   templateUrl: './fleet-page.html',
   styleUrls: ['./fleet-page.scss'],
 })
 export class FleetPage {
+
+  // funktionale Logik für die Schiffsplatzierung
+isVertical = false;
+selectedShipName: string | null = null;
+showMessage = false;
+
+selectShip(shipName: string): void {
+  this.selectedShipName = shipName;
+}
+
+rotateSelected(): void {
+  if (!this.selectedShipName) {
+    this.showMessage = true;
+
+    setTimeout(() => {
+      this.showMessage = false;
+    }, 2000);
+
+    return;
+  }
+
+  this.isVertical = !this.isVertical;
+}
+
+isSelected(shipName: string): boolean {
+  return this.selectedShipName === shipName;
+}
+
+  
+
+
+
 
   // Router-Service für Navigation 
   constructor(private router: Router) {}

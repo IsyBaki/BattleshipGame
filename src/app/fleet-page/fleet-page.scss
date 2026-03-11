@@ -14,6 +14,67 @@
   box-sizing: border-box;
 }
 
+
+
+.ship{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+}
+
+.ship:hover{
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+.ship.selected{
+  background: rgba(255,255,255,0.08);
+  outline: 2px solid rgba(255,255,255,0.25);
+}
+
+.ship-img{
+  display: block;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+}
+
+.ship.vertical .ship-img{
+  transform: rotate(90deg);
+}
+
+
+
+.message{
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+
+  background: rgba(255,193,7,0.15);
+  border: 1px solid rgba(255,193,7,0.5);
+  color: #ffd666;
+
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
 /* ==================== WRAP ==================== */
 .fleet-page{
   max-width: 1400px;
@@ -36,10 +97,9 @@
 }
 
 /* ==================== LAYOUT ==================== */
-/* Desktop: 2 Spalten / darf schrumpfen (wie bei deinem Boards CSS) */
 .layout{
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
+  grid-template-columns: 320px minmax(0, 1fr);
   gap: clamp(16px, 2vw, 56px);
   align-items: stretch;
 }
@@ -53,52 +113,97 @@
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* Titel im Panel (kein justify-content nötig) */
 .panel-title{
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: clamp(18px, 1.2vw, 24px);
 }
 
-/* ==================== SHIPS ==================== */
+/* ==================== SHIPS PANEL ==================== */
+.ships-panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .ship-list{
   display: flex;
   flex-direction: column;
-  gap: 12px; /*  wie GameBoard: kompakt */
+  align-items: center;
+  gap: 18px;
 }
 
-/*  Ship soll sich der Panel-Breite anpassen */
 .ship{
-  height: clamp(36px, 3.2vw, 46px);
-  width: 70%;
-  border-radius: 12px;
-
-  background: linear-gradient(135deg, #6b7280, #4b5563);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
-
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  font-weight: 700;
+  align-items: center;
+  padding: 4px 0;
   cursor: grab;
   user-select: none;
   touch-action: none;
+  border-radius: 12px;
+  transition: transform 0.15s ease, filter 0.15s ease, background 0.15s ease;
+}
+
+.ship:hover{
+  transform: scale(1.03);
+  filter: brightness(1.08);
 }
 
 .ship.selected{
-  outline: 3px solid rgba(235,255,108,.9);
-  outline-offset: 2px;
+  background: rgba(255,255,255,0.08);
+  outline: 2px solid rgba(255,255,255,0.18);
 }
 
-/*  Button immer volle Breite */
+.ship-img{
+  display: block;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* einzelne Schiffe leicht unterschiedlich groß */
+.ship[data-name="Carrier"] .ship-img{
+  width: 205px;
+}
+
+.ship[data-name="Battleship"] .ship-img{
+  width: 185px;
+}
+
+.ship[data-name="Cruiser"] .ship-img{
+  width: 150px;
+}
+
+.ship[data-name="Submarine"] .ship-img{
+  width: 145px;
+}
+
+.ship[data-name="Destroyer"] .ship-img{
+  width: 120px;
+}
+
 .rotate-btn{
-  margin-top: 14px;
+  margin-top: 22px;
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 12px;
   border: none;
   font-weight: 800;
+  font-size: 16px;
   cursor: pointer;
+  background: #cfd2d2;
+  color: #111;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.rotate-btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
 }
 
 /* ==================== BOARD ==================== */
@@ -106,7 +211,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /*  wirkt schöner bei gleicher Panel-Höhe */
+  justify-content: center;
 }
 
 .board-title{
@@ -115,7 +220,6 @@
   font-size: clamp(18px, 1.4vw, 28px);
 }
 
-/* */
 .board{
   width: 100%;
   max-width: 520px;
@@ -136,74 +240,104 @@
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
-
   border-radius: clamp(4px, 0.6vw, 10px);
   font-weight: 700;
   font-size: clamp(12px, 1.1vw, 18px);
 }
 
-.head{ background: #6c6f74; color: #fff; }
-.corner{ background: #6c6f74; }
-.water{ background: #87a3c6; }
+.head{
+  background: #6c6f74;
+  color: #fff;
+}
 
-/* ==================== RESPONSIVE (wie GameBoard) ==================== */
+.corner{
+  background: #6c6f74;
+}
+
+.water{
+  background: #87a3c6;
+}
+
+.water:hover{
+  filter: brightness(1.07);
+  cursor: pointer;
+}
+
+/* ==================== READY BUTTON ==================== */
+.fleet-ready-btn{
+  margin-top: clamp(18px, 2.2vw, 28px);
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(14px, 1.6vw, 18px);
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #e5e7eb, #cfd4da);
+  color: #111;
+  font-weight: 900;
+  font-size: clamp(14px, 1.1vw, 18px);
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,.35);
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.fleet-ready-btn:hover{
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 700px){
+  .layout{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ships-panel{
+    max-width: 340px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .ship-img{
+    width: 160px;
+  }
+
+  .ship[data-name="Carrier"] .ship-img{
+    width: 185px;
+  }
+
+  .ship[data-name="Battleship"] .ship-img{
+    width: 170px;
+  }
+
+  .ship[data-name="Cruiser"] .ship-img{
+    width: 140px;
+  }
+
+  .ship[data-name="Submarine"] .ship-img{
+    width: 135px;
+  }
+
+  .ship[data-name="Destroyer"] .ship-img{
+    width: 110px;
+  }
+
+  .fleet-ready-btn{
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 500px){
   :host{
     padding: 12px;
   }
 
-  /*  untereinander statt nebeneinander */
-  .layout{
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  /*  Schiffe + Button gleich groß*/
-  .ship{
-    height: 44px;
-  }
-
   .board{
     max-width: 520px;
-  }
-}
-
-.water:hover {
-  filter: brightness(1.07);
-  cursor: pointer;
-}
-
-
-/* ==================== FLEET READY BUTTON (BOTTOM) ==================== */
-.fleet-ready-btn{
-  margin-top: clamp(18px, 2.2vw, 28px);
-
-  width: 50%;
-  display: block;          /* macht margin:auto zuverlässig */
-  margin-left: auto;       /*  zentrieren */
-  margin-right: auto;      /*  zentrieren */
-
-  padding: clamp(14px, 1.6vw, 18px);
-  border-radius: 16px;
-  border: none;
-
-  background: linear-gradient(135deg, #e5e7eb, #cfd4da);
-  color: #111;
-
-  font-weight: 900;
-  font-size: clamp(14px, 1.1vw, 18px);
-  letter-spacing: 0.4px;
-
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0,0,0,.35);
-}
-
-
-/* ==================== MOBILE TUNING ==================== */
-@media (max-width: 500px){
-  .fleet-ready-btn{
-    width: 100%;        /*  auf Handy volle Breite */
-    padding: 16px;
-    font-size: 16px;
   }
 }
