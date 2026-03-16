@@ -8,72 +8,38 @@
       <div class="panel ships-panel">
         <div class="panel-title">Place your ships</div>
 
-        <div class="ship-list" id="shipList" aria-label="Ship list">
+        <div class="ship-list" aria-label="Ship list">
           <div
             class="ship"
-            data-len="5"
-            data-name="Carrier"
-            title="Carrier"
-            (click)="selectShip('Carrier')"
-            [class.selected]="isSelected('Carrier')"
-            [class.vertical]="isSelected('Carrier') && isVertical"
+            *ngFor="let ship of ships"
+            [attr.data-len]="ship.size"
+            [attr.data-name]="ship.name"
+            [title]="ship.name"
+            draggable="true"
+            (click)="selectShip(ship.name)"
+            (dragstart)="onShipDragStart(ship.name)"
+            (dragend)="onShipDragEnd()"
+            [class.selected]="isSelected(ship.name)"
+            [class.vertical]="isSelected(ship.name) && isVertical"
+            [class.placed]="ship.placed"
           >
-            <img src="/image/ships/aircraft carrier.png" alt="Carrier" class="ship-img">
-          </div>
-
-          <div
-            class="ship"
-            data-len="4"
-            data-name="Battleship"
-            title="Battleship"
-            (click)="selectShip('Battleship')"
-            [class.selected]="isSelected('Battleship')"
-            [class.vertical]="isSelected('Battleship') && isVertical"
-          >
-            <img src="/image/ships/battleship.png" alt="Battleship" class="ship-img">
-          </div>
-
-          <div
-            class="ship"
-            data-len="3"
-            data-name="Cruiser"
-            title="Cruiser"
-            (click)="selectShip('Cruiser')"
-            [class.selected]="isSelected('Cruiser')"
-            [class.vertical]="isSelected('Cruiser') && isVertical"
-          >
-            <img src="/image/ships/Cruiser.png" alt="Cruiser" class="ship-img">
-          </div>
-
-          <div
-            class="ship"
-            data-len="3"
-            data-name="Submarine"
-            title="Submarine"
-            (click)="selectShip('Submarine')"
-            [class.selected]="isSelected('Submarine')"
-            [class.vertical]="isSelected('Submarine') && isVertical"
-          >
-            <img src="/image/ships/Submarine.png" alt="Submarine" class="ship-img">
-          </div>
-
-          <div
-            class="ship"
-            data-len="2"
-            data-name="Destroyer"
-            title="Destroyer"
-            (click)="selectShip('Destroyer')"
-            [class.selected]="isSelected('Destroyer')"
-            [class.vertical]="isSelected('Destroyer') && isVertical"
-          >
-            <img src="/image/ships/destroyer.png" alt="Destroyer" class="ship-img">
+            <img
+              [src]="ship.image"
+              [alt]="ship.name"
+              class="ship-img"
+            />
           </div>
         </div>
-        
+
         <div class="message" *ngIf="showMessage">
           please select a ship first!
-      </div>
-        <button class="rotate-btn" id="rotateBtn" type="button" (click)="rotateSelected()">
+        </div>
+
+        <button
+          class="rotate-btn"
+          type="button"
+          (click)="rotateSelected()"
+        >
           ↻ Rotate
         </button>
       </div>
@@ -83,31 +49,56 @@
         <h2 class="board-title">Ocean</h2>
 
         <div class="board" aria-label="Ocean board">
-
           <div class="cell head corner"></div>
 
-          <div class="cell head">A</div><div class="cell head">B</div><div class="cell head">C</div>
-          <div class="cell head">D</div><div class="cell head">E</div><div class="cell head">F</div>
-          <div class="cell head">G</div><div class="cell head">H</div><div class="cell head">I</div>
-          <div class="cell head">J</div>
+          <div
+            class="cell head"
+            *ngFor="let col of cols"
+          >
+            {{ col }}
+          </div>
 
-          <div class="cell head">1</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">2</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">3</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">4</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">5</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">6</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">7</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">8</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">9</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-          <div class="cell head">10</div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
+          <ng-container *ngFor="let row of rows">
+            <div class="cell head">
+              {{ row + 1 }}
+            </div>
 
+            <div
+              *ngFor="let col of cols; let colIndex = index"
+              class="cell water board-cell"
+              (dragover)="onCellDragOver($event, row, colIndex)"
+              (drop)="onCellDrop($event, row, colIndex)"
+              (click)="onCellClick(row, colIndex)"
+              [class.preview-valid]="isPreviewCell(row, colIndex) && previewValid"
+              [class.preview-invalid]="isPreviewCell(row, colIndex) && !previewValid"
+            >
+              <ng-container *ngIf="isShipStartCell(row, colIndex)">
+                <div
+                  class="ship-on-board-wrap"
+                  [class.vertical]="getShipAtCell(row, colIndex)?.vertical"
+                  [attr.data-name]="getShipAtCell(row, colIndex)?.name"
+                  [ngStyle]="getShipStyle(getShipAtCell(row, colIndex)!)"
+                >
+                  <img
+                    [src]="getShipAtCell(row, colIndex)?.image"
+                    [alt]="getShipAtCell(row, colIndex)?.name || ''"
+                    class="ship-on-board-img"
+                    draggable="false"
+                  />
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
         </div>
       </div>
 
     </div>
 
-    <button class="fleet-ready-btn" type="button" (click)="onReadyClick()">
+    <button
+      class="fleet-ready-btn"
+      type="button"
+      (click)="onReadyClick()"
+    >
       {{ readyButtonText }}
     </button>
   </div>
