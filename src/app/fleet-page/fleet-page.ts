@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
+// Interface für die Schiffe
 interface Ship {
   name: string;
   size: number;
@@ -20,6 +21,8 @@ interface Ship {
   styleUrls: ['./fleet-page.scss'],
 })
 export class FleetPage {
+
+  //======================= Funktion für die Rotation der Schiffe =======================
   isVertical = false;
   selectedShipName: string | null = null;
   showMessage = false;
@@ -46,6 +49,7 @@ export class FleetPage {
     return this.selectedShipName === shipName;
   }
 
+  //======================= Funktion für das Board und die Schiffe =======================
   boardSize = 10;
   rows = Array.from({ length: this.boardSize }, (_, i) => i);
   cols = Array.from({ length: this.boardSize }, (_, i) =>
@@ -105,10 +109,10 @@ export class FleetPage {
   );
 
   draggedShipName: string | null = null;
-
   previewCells: { row: number; col: number }[] = [];
   previewValid = false;
 
+  //======================= Funktion für Drag and Drop der Schiffe =======================
   onShipDragStart(shipName: string): void {
     this.draggedShipName = shipName;
     this.selectedShipName = shipName;
@@ -147,6 +151,7 @@ export class FleetPage {
     this.placeShip(this.selectedShipName, row, col);
   }
 
+  //======================= Funktion für die Platzierung der Schiffe =======================
   placeShip(shipName: string, startRow: number, startCol: number): void {
     const ship = this.getShipByName(shipName);
     if (!ship) return;
@@ -244,6 +249,7 @@ export class FleetPage {
     return this.ships.find((ship) => ship.name === shipName);
   }
 
+  //======================= Funktion für die Vorschau der Platzierung =======================
   showPreview(ship: Ship, startRow: number, startCol: number): void {
     const vertical = this.isVertical;
     const cells: { row: number; col: number }[] = [];
@@ -304,6 +310,7 @@ export class FleetPage {
     return this.previewCells.some((cell) => cell.row === row && cell.col === col);
   }
 
+  //======================= Funktion für die Anzeige der Schiffe auf dem Board =======================
   getShipAtCell(row: number, col: number): Ship | null {
     const shipName = this.board[row][col];
     if (!shipName) return null;
@@ -337,6 +344,7 @@ export class FleetPage {
     return this.ships.every((ship) => ship.placed);
   }
 
+  //======================= Funktion für die Navigation =======================
   constructor(private router: Router) {}
 
   mode: 'hotseat' | 'singleplayer' = 'hotseat';

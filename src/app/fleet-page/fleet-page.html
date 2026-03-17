@@ -1,13 +1,15 @@
 <div class="fleet-page">
+  <!-- ==================== Titel der Seite ==================== -->
   <h2 class="title">Fleet</h2>
 
   <div class="fleet-box">
     <div class="layout">
 
-      <!-- ==================== Left: Ships ==================== -->
+      <!-- ==================== Linke Seite: Schiffe auswählen ==================== -->
       <div class="panel ships-panel">
         <div class="panel-title">Place your ships</div>
 
+        <!-- ==================== Schiffsliste ==================== -->
         <div class="ship-list" aria-label="Ship list">
           <div
             class="ship"
@@ -31,10 +33,12 @@
           </div>
         </div>
 
+        <!-- ==================== Hinweis wenn kein Schiff ausgewählt wurde ==================== -->
         <div class="message" *ngIf="showMessage">
           please select a ship first!
         </div>
 
+        <!-- ==================== Button zum Drehen der Schiffe ==================== -->
         <button
           class="rotate-btn"
           type="button"
@@ -44,13 +48,17 @@
         </button>
       </div>
 
-      <!-- ==================== Right: Ocean Board ==================== -->
+      <!-- ==================== Rechte Seite: Spielfeld / Ocean Board ==================== -->
       <div class="panel board-panel">
         <h2 class="board-title">Ocean</h2>
 
+        <!-- ==================== Ganzes Spielfeld ==================== -->
         <div class="board" aria-label="Ocean board">
+
+          <!-- ==================== Obere linke Ecke ==================== -->
           <div class="cell head corner"></div>
 
+          <!-- ==================== Spaltenüberschriften A bis J ==================== -->
           <div
             class="cell head"
             *ngFor="let col of cols"
@@ -58,11 +66,15 @@
             {{ col }}
           </div>
 
+          <!-- ==================== Reihen des Spielfelds ==================== -->
           <ng-container *ngFor="let row of rows">
+
+            <!-- ==================== Zeilennummer links ==================== -->
             <div class="cell head">
               {{ row + 1 }}
             </div>
 
+            <!-- ==================== Wasserfelder pro Reihe ==================== -->
             <div
               *ngFor="let col of cols; let colIndex = index"
               class="cell water board-cell"
@@ -72,13 +84,18 @@
               [class.preview-valid]="isPreviewCell(row, colIndex) && previewValid"
               [class.preview-invalid]="isPreviewCell(row, colIndex) && !previewValid"
             >
+
+              <!-- ==================== Schiff nur auf der Startzelle anzeigen ==================== -->
               <ng-container *ngIf="isShipStartCell(row, colIndex)">
+
+                <!-- ==================== Wrapper für das Schiff auf dem Board ==================== -->
                 <div
                   class="ship-on-board-wrap"
                   [class.vertical]="getShipAtCell(row, colIndex)?.vertical"
                   [attr.data-name]="getShipAtCell(row, colIndex)?.name"
                   [ngStyle]="getShipStyle(getShipAtCell(row, colIndex)!)"
                 >
+                  <!-- ==================== Bild des platzierten Schiffs ==================== -->
                   <img
                     [src]="getShipAtCell(row, colIndex)?.image"
                     [alt]="getShipAtCell(row, colIndex)?.name || ''"
@@ -86,20 +103,25 @@
                     draggable="false"
                   />
                 </div>
+
               </ng-container>
             </div>
           </ng-container>
         </div>
+
+      <!-- ==================== Ready / Start Game Button ==================== -->
+          <button
+            class="fleet-ready-btn"
+            type="button"
+            (click)="onReadyClick()"
+          >
+            {{ readyButtonText }}
+          </button>
+
       </div>
 
     </div>
 
-    <button
-      class="fleet-ready-btn"
-      type="button"
-      (click)="onReadyClick()"
-    >
-      {{ readyButtonText }}
-    </button>
+    
   </div>
 </div>

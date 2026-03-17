@@ -1,8 +1,8 @@
-<!--===============================Game Boad Einstellungen=========================================-->
+<!--=============================== Game Board Einstellungen =========================================-->
 
 <div class="game-page">
 
-  <!-- =========================users Info========================= -->
+  <!-- ========================= Users Info ========================= -->
   <div class="game-info">
     <div class="info-left">
       <div class="info-title">Player</div>
@@ -20,157 +20,106 @@
     </div>
   </div>
 
-  <!-- ================================Game Board=======================================-->
+  <!-- ========================= Hit / Miss Popup ========================= -->
+  <div
+    class="shot-popup"
+    *ngIf="showPopup"
+    [class.hit-popup]="isHitPopup"
+    [class.miss-popup]="!isHitPopup"
+  >
+  <!-- HIT BILD -->
+    <img
+      *ngIf="isHitPopup"
+      src="/image/hit/explosion.png"
+      alt="Treffer"
+      class="popup-hit-image"
+    />
+    <!-- MISS BILD -->
+    <img
+      *ngIf="!isHitPopup"
+      src="/image/hit/miss.png"
+      alt="Verfehlt"
 
+      class="popup-hit-image"
+    />
+
+
+    <div class="popup-text">
+      {{ isHitPopup ? 'Hit!' : 'Miss!' }}
+    </div>
+
+
+  </div>
+
+  <!-- ================================ Game Boards ======================================= -->
   <div class="boards">
 
-    <!-- =============================Ocean Board====================================== -->
+    <!-- ============================= Ocean Board ====================================== -->
     <div class="board-wrap">
       <h2 class="board-title">Ocean</h2>
 
       <div class="board">
-
-        <!-- Ecke oben links -->
         <div class="cell head corner"></div>
 
-        <!-- Spaltenkopf A-J -->
-        <div class="cell head">A</div>
-        <div class="cell head">B</div>
-        <div class="cell head">C</div>
-        <div class="cell head">D</div>
-        <div class="cell head">E</div>
-        <div class="cell head">F</div>
-        <div class="cell head">G</div>
-        <div class="cell head">H</div>
-        <div class="cell head">I</div>
-        <div class="cell head">J</div>
+        <div
+          class="cell head"
+          *ngFor="let col of cols"
+        >
+          {{ col }}
+        </div>
 
-        <!-- Reihen 1-10 -->
-        <!-- Row 1 -->
-        <div class="cell head">1</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
+        <ng-container *ngFor="let row of rows">
+          <div class="cell head">
+            {{ row + 1 }}
+          </div>
 
-        <!-- Row 2 -->
-        <div class="cell head">2</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 3 -->
-        <div class="cell head">3</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 4 -->
-        <div class="cell head">4</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 5 -->
-        <div class="cell head">5</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 6 -->
-        <div class="cell head">6</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 7 -->
-        <div class="cell head">7</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 8 -->
-        <div class="cell head">8</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 9 -->
-        <div class="cell head">9</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 10 -->
-        <div class="cell head">10</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
+          <div
+            *ngFor="let col of cols; let colIndex = index"
+            class="cell"
+            [ngClass]="getOceanCellClass(row, colIndex)"
+          ></div>
+        </ng-container>
       </div>
     </div>
 
-    <!-- =============================Target Board====================================== -->
+    <!-- ============================= Target Board ====================================== -->
     <div class="board-wrap">
       <h2 class="board-title">Target</h2>
 
       <div class="board">
-
-        <!-- Ecke oben links -->
         <div class="cell head corner"></div>
 
-        <!-- Spaltenkopf A-J -->
-        <div class="cell head">A</div>
-        <div class="cell head">B</div>
-        <div class="cell head">C</div>
-        <div class="cell head">D</div>
-        <div class="cell head">E</div>
-        <div class="cell head">F</div>
-        <div class="cell head">G</div>
-        <div class="cell head">H</div>
-        <div class="cell head">I</div>
-        <div class="cell head">J</div>
+        <div
+          class="cell head"
+          *ngFor="let col of cols"
+        >
+          {{ col }}
+        </div>
 
-        <!-- Reihen 1-10 -->
-        <!-- Row 1 -->
-        <div class="cell head">1</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
+        <ng-container *ngFor="let row of rows">
+          <div class="cell head">
+            {{ row + 1 }}
+          </div>
 
-        <!-- Row 2 -->
-        <div class="cell head">2</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 3 -->
-        <div class="cell head">3</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 4 -->
-        <div class="cell head">4</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 5 -->
-        <div class="cell head">5</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 6 -->
-        <div class="cell head">6</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 7 -->
-        <div class="cell head">7</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 8 -->
-        <div class="cell head">8</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 9 -->
-        <div class="cell head">9</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
-        <!-- Row 10 -->
-        <div class="cell head">10</div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-        <div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div><div class="cell water"></div>
-
+          <div
+            *ngFor="let col of cols; let colIndex = index"
+            class="cell target-cell board-shot-cell"
+            [ngClass]="[
+              getTargetCellClass(row, colIndex),
+              isTargetCellDisabled(row, colIndex) ? 'disabled' : '',
+              isAnimatedHitCell(row, colIndex) ? 'cell-hit-animate' : '',
+              isAnimatedMissCell(row, colIndex) ? 'cell-miss-animate' : ''
+            ]"
+            (click)="shoot(row, colIndex)"
+          >
+            <img
+              *ngIf="isAnimatedHitCell(row, colIndex)"
+              src="/image/hit/explosion.png"
+              alt="Explosion"
+              class="cell-explosion"
+            />
+          </div>
+        </ng-container>
       </div>
     </div>
 

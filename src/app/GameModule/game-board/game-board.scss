@@ -1,5 +1,4 @@
 /* ==================== HOST / PAGE ==================== */
-
 :host {
   display: block;
   min-height: 100vh;
@@ -15,32 +14,26 @@
 }
 
 /* ==================== GAME PAGE ==================== */
-
 .game-page {
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 2vw, 24px);
 }
 
-/* ==================== PLAYER INFO (HORIZONTAL) ==================== */
-
+/* ==================== PLAYER INFO ==================== */
 .game-info {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: 1fr 1.6fr 1fr;
   align-items: center;
   gap: clamp(8px, 1.5vw, 20px);
-
   padding: clamp(10px, 1.6vw, 18px);
   border-radius: 16px;
-
   background: rgba(43, 47, 54, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
-
   position: sticky;
   top: 0;
   z-index: 5;
@@ -55,9 +48,9 @@
   min-width: 0;
 }
 
-.info-left   { text-align: left; }
+.info-left { text-align: left; }
 .info-middle { text-align: center; }
-.info-right  { text-align: right; }
+.info-right { text-align: right; }
 
 .info-title {
   color: rgba(255, 255, 255, 0.65);
@@ -76,37 +69,22 @@
   text-overflow: ellipsis;
 }
 
-/* ==================== BOARDS WRAPPER (RESPONSIVE FIX) ==================== */
-
+/* ==================== BOARDS ==================== */
 .boards {
   display: grid;
-
-  /* Desktop: 2 Boards nebeneinander, aber sie dürfen schrumpfen */
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(16px, 2vw, 56px);
-
-  align-items: start;
-
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-
   padding-inline: clamp(16px, 1.8vw, 28px);
-
-  /*  kein forced horizontal scroll mehr */
-  overflow-x: visible;
-  padding-bottom: 10px;
 }
 
-/* ==================== BOARD TITLES ==================== */
-
+/* ==================== BOARD WRAP ==================== */
 .board-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 100%;
-  min-width: 0; /* wichtig, damit Grid schrumpfen darf */
 }
 
 .board-title {
@@ -116,82 +94,142 @@
   font-size: clamp(16px, 1.2vw, 24px);
 }
 
-/* ==================== GAME BOARD GRID (RESPONSIVE FIX) ==================== */
-
+/* ==================== BOARD ==================== */
 .board {
-  /* Board passt sich der Spalte an */
   width: 100%;
-  max-width: 450px;  /* optisches Maximum, für das spielfeld, bei vollem Fenster ist das 450px groß */
-  margin: 0 auto;
-
-  /* 11x11 Grid (Ecke + 10 Spalten/Zeilen) */
+  max-width: 450px;
   display: grid;
   grid-template-columns: repeat(11, 1fr);
-
-  /* spacing */
-  --gap: clamp(2px, 0.6vw, 6px);
-  gap: var(--gap);
-
+  gap: clamp(2px, 0.6vw, 6px);
   background: #1d1c1c;
   padding: clamp(8px, 1.2vw, 18px);
-  border-radius: clamp(10px, 1vw, 16px);
+  border-radius: 14px;
 }
 
 /* ==================== CELLS ==================== */
-
 .cell {
-  /* macht alle Felder quadratisch  */
-  aspect-ratio: 1 / 1;
-
+  aspect-ratio: 1;
   display: grid;
   place-items: center;
-
   font-weight: 700;
-  border-radius: clamp(4px, 0.6vw, 10px);
-  user-select: none;
-
-  font-size: clamp(12px, 1.2vw, 20px);
+  border-radius: 6px;
 }
 
-.head {
-  background: #6c6f74;
-  color: #ffffff;
-}
-
+/* HEAD */
+.head,
 .corner {
   background: #6c6f74;
+  color: #fff;
 }
 
-.water {
-  background: #87a3c6;
+/* STATES */
+.water { background: #87a3c6; }
+.ship { background: #5f7ea4; }
+.hit { background: #e74c3c !important; color: #fff; }
+.miss { background: #cfd8e3 !important; color: #111; }
+
+/* ==================== TARGET CELL ==================== */
+.board-shot-cell {
+  position: relative;
+  overflow: hidden;
 }
 
-.water:hover {
-  filter: brightness(1.07);
-  cursor: pointer;
+/* ==================== EXPLOSION ==================== */
+.cell-explosion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: cellExplosion 0.45s ease forwards;
 }
 
-/* ==================== FÜR KLEINERE MONITORE / MOBILE ==================== */
+/* ==================== ANIMATION ==================== */
+.cell-hit-animate {
+  animation: hitCellPulse 0.45s ease;
+}
 
+.cell-miss-animate {
+  animation: missCellPulse 0.45s ease;
+}
+
+/* ==================== POPUP ==================== */
+.shot-popup {
+  margin: 0 auto;
+  min-width: 180px;
+  min-height: 140px;
+  padding: 14px 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+  background: #17202b;
+
+  border: none;          /* keine Border */
+  box-shadow: none;      /* keien schatten */
+
+  backdrop-filter: blur(6px);
+}
+
+/* ==================== POPUP IMAGE ==================== */
+.popup-hit-image {
+  height: 70px;
+  object-fit: contain;
+  animation: popupZoom 0.4s ease;
+}
+
+/* ==================== POPUP TEXT ==================== */
+.popup-text {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* HIT / MISS TEXT COLORS */
+.hit-popup .popup-text {
+  color: #ffdddd;
+}
+
+.miss-popup .popup-text {
+  color: #f3f3f3;
+}
+
+/* ==================== KEYFRAMES ==================== */
+@keyframes popupZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.8); }
+}
+
+@keyframes hitCellPulse {
+  50% { transform: scale(1.08); }
+}
+
+@keyframes missCellPulse {
+  50% { transform: scale(1.05); }
+}
+
+@keyframes cellExplosion {
+  0% { opacity: 0; transform: scale(0.6); }
+  40% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+/* ==================== MOBILE ==================== */
 @media (max-width: 500px) {
-  :host {
-    padding: 12px;
-  }
-
-  /* Boards untereinander statt nebeneinander */
   .boards {
     grid-template-columns: 1fr;
-    padding-inline: 10px;
-    gap: 12px;
   }
 
-  .game-info {
-    gap: 10px;
+  .shot-popup {
+    min-width: 140px;
+    min-height: 110px;
   }
 
-  .board {
-    max-width: 520px; /* bleibt zentriert */
+  .popup-hit-image {
+    height: 55px;
   }
 }
-
-/* ==================== FÜR neue Einstellungen, später ==================== */
