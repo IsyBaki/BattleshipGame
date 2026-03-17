@@ -11,4 +11,6 @@ import { RouterLink } from '@angular/router';
 })
 export class HotSeatModule {
 
+  // ========================== hier die Funktionen für die Hot Seat =============================
+
 }

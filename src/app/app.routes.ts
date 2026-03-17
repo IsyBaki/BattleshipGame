@@ -11,6 +11,7 @@ import {GameBoard} from "./GameModule/game-board/game-board";
 import {RuleDescription} from "./GameModule/rule-description/rule-description";
 import {LoginComponent} from "./UserModule/login-component/login-component";
 import {ProfileComponent} from "./UserModule/profile-component/profile-component";
+import { TipsPage } from './tips-page/tips-page';
 
 
 export const routes: Routes = [
@@ -23,7 +24,8 @@ export const routes: Routes = [
     {path: 'scoreboard', component: ScoreBoard},
     {path: 'lobby', component: Lobby},
     {path: 'hotseat', component: HotSeatModule},
-    {path: 'gameroom', component: GameRoom}
+    {path: 'gameroom', component: GameRoom},
+    {path: 'tips', component: TipsPage}
 
     
 

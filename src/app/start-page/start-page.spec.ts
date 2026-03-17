@@ -19,8 +19,12 @@ describe('StartPage', () => {
     fixture.detectChanges();
   });
 
+  // Test case 1: creation of the component
   it('should create', () => {
      const fixture = TestBed.createComponent(StartPage);
     expect(fixture.componentInstance).toBeTruthy();
   });
+
+
+  
 });

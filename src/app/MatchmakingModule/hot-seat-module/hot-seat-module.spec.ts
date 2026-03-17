@@ -19,7 +19,18 @@ describe('HotSeatModule', () => {
     fixture.detectChanges();
   });
 
+  // Test case 1: creation of the component
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+// Test case 2: check if the component initializes correctly
+  it('should initialize correctly', () => {
+    expect(component).toBeDefined();
+  });
+
+
+
+
+
 });

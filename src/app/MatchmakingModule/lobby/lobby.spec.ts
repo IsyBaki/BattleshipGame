@@ -18,7 +18,21 @@ describe('Lobby', () => {
     fixture.detectChanges();
   });
 
+  // Test case 1: creation of the component
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+// Test case 2: initialization of the component
+  it('should initialize the component', () => {
+    expect(component).toBeDefined();
+    
+  });
+
+
+
+
+
+
+
 });

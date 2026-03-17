@@ -12,8 +12,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class ScoreBoard {
 
-
+//================================== hier sind die test daten ===============================
   // Dummy datan als beispiel, später mit echtem backend verbinden
+  
    stats = {
     total: 12,
     wins: 7,

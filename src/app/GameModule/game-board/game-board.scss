@@ -125,8 +125,8 @@
 /* STATES */
 .water { background: #87a3c6; }
 .ship { background: #5f7ea4; }
-.hit { background: #e74c3c !important; color: #fff; }
-.miss { background: #cfd8e3 !important; color: #111; }
+.hit { background: #e74c3c !important; color: #ffffff; }
+.miss { background: hsla(58, 78%, 56%, 0.938) !important; color: #111; }
 
 /* ==================== TARGET CELL ==================== */
 .board-shot-cell {

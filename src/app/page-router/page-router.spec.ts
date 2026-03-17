@@ -17,7 +17,12 @@ describe('PageRouter', () => {
     fixture.detectChanges();
   });
 
+  // Test case 1: creation of the component
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+  
 });
